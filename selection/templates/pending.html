@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if not leaves %}
+    <h2 style = "text-align: center; color: red ;">No Pending Requests</h2>
+    {% else %}
+    <h2 style = "text-align: center; color: red ;">Pending Requests</h2>
+    <div class="wrapper">
+
+        <div class="table">
+
+            <div class="row header">
+                <div class="cell">
+                    Tên học sinh
+                </div>
+                <div class="cell">
+                    Phòng số (Phòng trọ)
+                </div>
+                <div class="cell">
+                    Ngày bắt đầu
+                </div>
+                <div class="cell">
+                    Ngày kết thúc
+                </div>
+                <div class="cell">
+                    Lý do
+                </div>
+                <div class="cell">
+                    Xác nhận
+                </div>
+                <div class="cell">
+                    Từ chối
+                </div>
+            </div>
+            {% for leave in leaves %}
+                <div class="row">
+                    <div class="cell" data-title="Name">
+                        <a  href="{% url 'student_leaves' leave.student.id %}"> {{ leave.student.student_name }} </a>
+                    </div>
+                    <div class="cell" data-title="Name">
+                        {{ leave.student.room.no }} in {{ leave.student.room.hostel.name}}
+                    </div>
+                    <div class="cell" data-title="Date">
+                        {{ leave.start_date }}
+                    </div>
+                    <div class="cell" data-title="Date">
+                        {{ leave.end_date }}
+                    </div>
+                    <div class="cell" data-title="Name">
+                        {{ leave.reason }}
+                    </div>
+                    <div class="cell">
+                    <a class="btn btn-success" href="{% url 'leave_confirm' leave.id %}"> Trợ cấp  </a>
+                    </div>
+                    <div class="cell">
+                    <a class="btn btn-danger" href="{% url 'leave_reject' leave.id %}"> Từ chối </a>
+                    </div>
+
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <br><br>
+
+
+    {% if accepted %}
+    <h2 style = "text-align: center; color: blue ;" > Yêu cầu rời khỏi được chấp nhận</h2>
+
+    <div class="wrapper">
+        <div class="table">
+
+            <div class="row header">
+                <div class="cell">
+                    Tên học sinh
+                </div>
+                <div class="cell">
+                    Số đăng kí
+                </div>
+                <div class="cell">
+                    Khóa học
+                </div>
+                <div class="cell">
+                    Ngày bắt đầu
+                </div>
+                <div class="cell">
+                    Ngày kết thúc
+                </div>
+                <div class="cell">
+                    Lý do
+                </div>
+
+            </div>
+            {% for leave in accepted %}
+                <div class="row">
+                    <div class="cell">
+                        <a  href="{% url 'student_leaves' leave.student.id %}"> {{leave.student.student_name}} </a>
+                    </div>
+                    <div class="cell">
+                        {{leave.student.enrollment_no}}
+                    </div>
+                     <div class="cell">
+                        {{leave.student.course.code}}
+                    </div>
+
+                    <div class="cell">
+                        {{leave.start_date}}
+                    </div>
+                    <div class="cell">
+                        {{leave.end_date}}
+                    </div>
+                    <div class="cell">
+                        {{leave.reason}}
+                    </div>
+
+
+                 </div>
+            {% endfor %}
+
+
+
+        </div>
+
+    </div>
+    {% endif %}
+
+{% endblock content %}
+
+
+{% block more_links %}
+    <a href="{% url 'warden_profile' %}">
+        Hồ sơ
+    </a>
+    <a href="{% url 'empty_rooms' %}">
+        Phòng trống
+    </a>
+    <a href="{% url 'present_leaves' %}">
+        Hiện tại nghỉ
+    </a>
+    <a href="{% url 'mess_rebate' %}">
+        Giảm giá
+    </a>
+     <a href="{% url 'guest_requests' %}">
+        Yêu cầu phòng khách
+    </a>
+    <!--<a href="{% url 'warden_dues' %}">-->
+        <!--Dues-->
+    <!--</a>-->
+    <!--<a href="{% url 'warden_add_due' %}">-->
+        <!--Add Due-->
+    <!--</a>-->
+    <!--<a href="{% url 'warden_remove_due' %}">-->
+        <!--Remove Due-->
+    <!--</a>-->
+    <a href="{% url 'logout' %}">
+        Thoát
+    </a>
+{% endblock more_links %}

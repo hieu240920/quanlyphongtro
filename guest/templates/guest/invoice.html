@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đặt trước</title>
+</head>
+<body>
+<table>
+
+            <tr>
+                <td>
+                    Họ
+                </td>
+                <td>
+                    {{ res.guest.first_name }}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Tên
+                </td>
+                <td>
+                    {{ res.guest.last_name}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    SĐT
+                </td>
+                <td>
+                    {{ res.guest.phone }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E-Mail
+                </td>
+                <td>
+                    {{ res.guest.email }}
+                </td>
+            </tr>
+            <tr >
+                <td>
+                    Thành phố
+                </td>
+                <td>
+                    {{ res.guest.city }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Phòng số..
+                </td>
+                <td>
+                     {{ res.room.no }} in Guest House
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Ngày bắt đầu
+                </td>
+                <td>
+                     {{ res.checkIn }}
+
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Ngày kết thúc
+                </td>
+                <td>
+                     {{ res.checkOut }}
+
+                </td>
+            </tr>
+
+</table>
+
+<br>
+<br>
+</body>
+</html>

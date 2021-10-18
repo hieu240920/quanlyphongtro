@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="wrap">
+    <form action="" method="post">
+        {% csrf_token %}
+      <div class="fields">{{ form.as_p }}</div>
+      <input class="button-custom" type="submit" value="Xóa bỏ kì hạn">
+    </form>
+  </div>
+{% endblock content %}
+
+
+{% block more_links %}
+    <a href="{% url 'warden_profile' %}">
+        Hồ sơ
+    </a>
+    <a href="{% url 'warden_dues' %}">
+        Thời hạn
+    </a>
+    <a href="{% url 'warden_add_due' %}">
+        Thêm kì hạn
+    </a>
+    <a href="{% url 'logout' %}">
+        Thoát
+    </a>
+{% endblock more_links %}

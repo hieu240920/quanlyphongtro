@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   {% if leaves %}
+    <h2 style = "text-align: center; color: blue ;" > Yêu cầu nghỉ học được chấp nhận của {{student.student_name}}({{student.enrollment_no}})</h2>
+
+    <div class="wrapper">
+        <div class="table">
+
+            <div class="row header">
+
+                <div class="cell">
+                    Ngày bắt đầu
+                </div>
+                <div class="cell">
+                    Ngày kết thúc
+                </div>
+                <div class="cell">
+                    Lý do
+                </div>
+
+            </div>
+            {% for leave in leaves %}
+                <div class="row">
+                    <div class="cell">
+                        {{leave.start_date}}
+                    </div>
+                    <div class="cell">
+                        {{leave.end_date}}
+                    </div>
+                    <div class="cell">
+                        {{leave.reason}}
+                    </div>
+
+
+                 </div>
+            {% endfor %}
+
+
+
+        </div>
+
+    </div>
+    {% else %}
+    <h2 style = "text-align: center; color: blue ;" >Yêu cầu không nghỉ của {{student.student_name}}({{student.enrollment_no}})</h2>
+    {% endif %}
+
+{% endblock content %}
+
+
+{% block more_links %}
+    <a href="{% url 'warden_profile' %}">
+        Hồ sơ
+    </a>
+    <a href="{% url 'leave_admin' %}">
+        Để lại yêu cầu
+    </a>
+    <a href="{% url 'empty_rooms' %}">
+        Phòng trống
+    </a>
+    <a href="{% url 'present_leaves' %}">
+        Hiện tại nghỉ
+    </a>
+    <a href="{% url 'logout' %}">
+        Thoát
+    </a>
+{% endblock more_links %}

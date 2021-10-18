@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<div class="wrap">
+    
+    <a class="button-custom" href="{% url 'login' %}">
+        Đăng nhập (Học sinh)
+    </a>
+    <a class="button-custom" href="{% url 'warden_login' %}">
+        Đăng nhập (ADMIN)
+    </a>
+    <a class="button-custom" href="{% url 'hostel_all' %}">
+        Nhà trọ
+    </a>
+  </div>
+
+{% endblock content %}
+
+
+{% block more_links %}
+   
+{% endblock more_links %}
+

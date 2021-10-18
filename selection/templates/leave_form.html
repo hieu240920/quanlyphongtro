@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="wrap1" style="background-color: blue; color: white">
+    <form action="" method="post">
+        {% csrf_token %}
+      <div class="fields"> Ngày bắt đầu <br><br> {{ form.start_date }}</div>
+      <div class="fields"> Ngày kết thúc <br><br> {{ form.end_date }}</div>
+      <div class="fields"> {{ form.reason|as_crispy_field }}</div>
+      <input class="button-custom" type="submit" value="Xác nhận rời khỏi">
+    </form>
+  </div>
+{% endblock content %}
+
+
+{% block more_links %}
+    <a href="{% url 'student_profile' %}">
+            Hồ sơ
+        </a>
+    <a href="{% url 'edit' %}">
+            Cập nhật chi tiết
+        </a>
+        <a href="{% url 'select' %}">
+            Chọn phòng
+        </a>
+        <a href="{% url 'logout' %}">
+            Thoát
+        </a>
+{% endblock more_links %}

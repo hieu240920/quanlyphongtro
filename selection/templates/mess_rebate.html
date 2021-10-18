@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 style = "text-align: center; color: Red ;" >Present Leave List of all Students(For this Month until yesterday)  <form action="" method="post">
+        {% csrf_token %}
+
+      
+        {{ form.rebate }}
+
+        <br>
+        <input class="button-custom" type="submit" value="Submit">
+    </form>
+
+    </h2>
+
+
+
+{% if student %}
+    <div class="wrapper">
+        <div class="table">
+
+            <div class="row header">
+                <div class="cell">
+                    Tên học sinh
+                </div>
+                <div class="cell">
+                    Số đăng kí
+                </div>
+                <div class="cell">
+                    Khóa học
+                </div>
+                <div class="cell">
+                    Ngày hoàn tiền
+                </div>
+
+
+            </div>
+            {% for stud in student %}
+                <div class="row">
+                    <div class="cell">
+                        {{stud.student_name}}
+                    </div>
+                    <div class="cell">
+                        {{stud.enrollment_no}}
+                    </div>
+                     <div class="cell">
+                        {{stud.course.code}}
+                    </div>
+
+                    <div class="cell">
+                        {% for key,value in count_rebate.items %}
+                        {% if key == stud.enrollment_no %}
+                        {{ value }}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+
+
+
+                 </div>
+            {% endfor %}
+
+
+
+        </div>
+
+    </div>
+{% endif %}
+
+{% endblock content %}
+
+
+{% block more_links %}
+    <a href="{% url 'warden_profile' %}">
+        Hồ sơ
+    </a>
+    <a href="{% url 'leave_admin' %}">
+        Để lại yêu cầu
+    </a>
+    <a href="{% url 'empty_rooms' %}">
+        Phòng trống
+    </a>
+
+    <a href="{% url 'present_leaves' %}">
+        Hiện tại nghỉ
+    </a>
+     <a href="{% url 'guest_requests' %}">
+        Yêu cầu phòng khách
+    </a>
+    <a href="{% url 'logout' %}">
+        Thoát
+    </a>
+{% endblock more_links %}

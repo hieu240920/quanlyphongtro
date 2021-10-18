@@ -1,0 +1,36 @@
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="wrap">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="button-custom" type="submit" value="XONG">
+    </form>
+
+  </div>
+
+  
+{% endblock content %}
+
+
+{% block more_links %}
+     <a href="{% url 'student_profile' %}">
+            Hồ sơ
+        </a>
+    <a href="{% url 'edit' %}">
+            Cập nhật chi tiết
+        </a>
+        <a href="{% url 'select' %}">
+            Chọn phòng
+        </a>
+        <a href="{% url 'leave_status' %}">
+            Xác nhận rời bỏ
+        </a>
+        <a href="{% url 'logout' %}">
+            Thoát
+        </a>
+{% endblock more_links %}

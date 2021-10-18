@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="wrapper">
+
+        {% for student in students %}
+            {% if not student.no_dues %}
+                <div class="table">
+
+                    <div class="row">
+                        <div class="cell">
+                            Tên học sinh
+                        </div>
+                        <div class="cell">
+                            {{ student.student_name }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="cell">
+                            Số lượng tuyển sinh
+                        </div>
+                        <div class="cell">
+                            {{ student.enrollment_no }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="cell">
+                            Khóa học
+                        </div>
+                        <div class="cell">
+                            {{ student.course }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <a class="button-custom" href="{% url 'warden_add_due' %}">
+        Thêm thời hạn
+    </a>
+    </div>
+{% endblock content %}
+
+
+{% block more_links %}
+    <a href="{% url 'warden_profile' %}">
+        Hồ sơ
+    </a>
+    <a href="{% url 'empty_rooms' %}">
+        Các phòng trống
+    </a>
+    <!--<a href="{% url 'warden_dues' %}">-->
+        <!--Dues-->
+    <!--</a>-->
+    <a href="{% url 'warden_add_due' %}">
+        Thêm thời hạn
+    </a>
+    <a href="{% url 'warden_remove_due' %}">
+        Xóa thời hạn
+    </a>
+    <a href="{% url 'logout' %}">
+        Thoát
+    </a>
+{% endblock more_links %}

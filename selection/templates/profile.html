@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="wrapper">
+        <div class="table">
+
+            <div class="row">
+                <div class="cell">
+                    Tên
+                </div>
+                <div class="cell">
+                    {{ student.student_name }}
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="cell">
+                    Số lượng tuyển sinh
+                </div>
+                <div class="cell">
+                    {{ student.enrollment_no }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    Khóa học
+                </div>
+                <div class="cell">
+                    {{ student.course.code }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    Sinh nhật (yyyy-mm-dd)
+                </div>
+                <div class="cell">
+                    {{ student.dob }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    Giới tính
+                </div>
+                <div class="cell">
+                    {{ student.gender }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    Phòng
+                </div>
+                <div class="cell">
+                    {% if student.room_allotted %} {{ student.room }}
+                    {% else %} Không được phân bổ
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    Hạn nợ
+                </div>
+                <div class="cell">
+                    {% if student.no_dues %} <div style="color: green">Không có hạn nợ</div>
+                    {% else %} <div style="color: red">Hạn nợ chưa thanh toán</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% if student.room_allotted %}
+            <a class="button-custom" href="{% url 'select' %}">
+           Cập nhật phòng của bạn
+        </a>
+        {% else %}
+        <a class="button-custom" href="{% url 'select' %}">
+            Chọn phòng
+        </a>
+        {% endif %}
+    </div>
+
+    <h2 style = "text-align: center; color: blue ;" > Yêu cầu nghỉ trước</h2>
+    {% if leaves %}
+    <div class="wrapper">
+        <div class="table">
+
+            <div class="row header">
+                <div class="cell">
+                    Ngày bắt đầu
+                </div>
+                <div class="cell">
+                    Ngày kết thúc
+                </div>
+                <div class="cell">
+                    Lý do
+                </div>
+                <div class="cell">
+                    Đồng ý/Từ chối
+                </div>
+
+
+            </div>
+            {% for leave in leaves %}
+                <div class="row">
+                    <div class="cell">
+                        {{leave.start_date}}
+                    </div>
+                    <div class="cell">
+                        {{leave.end_date}}
+                    </div>
+                    <div class="cell">
+                        {{leave.reason}}
+                    </div>
+
+                    <div class="cell">
+                        {% if leave.accept %} &#10004; {% elif leave.reject %} &#10008; {% else %} - {% endif %}
+                    </div>
+
+
+                 </div>
+            {% endfor %}
+
+
+
+        </div>
+
+    </div>
+    {% endif %}
+
+
+{% endblock content %}
+
+
+{% block more_links %}
+    <a href="{% url 'edit' %}">
+            Cập nhật chi tiết
+        </a>
+         {% if student.room_allotted %}
+        <a href="{% url 'select' %}">
+            Cập nhật phòng
+        </a>
+        {% else %}
+        <a href="{% url 'select' %}">
+            Chọn phòng
+        </a>
+        {% endif %}
+
+        <a href="{% url 'repair' %}">
+            Bảo trì phòng
+        </a>
+
+
+
+        <a href="{% url 'leave_status' %}">
+            Nộp đơn rời khỏi
+        </a>
+        <a href="{% url 'logout' %}">
+            Thoát
+        </a>
+{% endblock more_links %}

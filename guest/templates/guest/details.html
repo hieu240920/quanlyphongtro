@@ -1,0 +1,77 @@
+{% extends 'guest/base.html' %}
+{% block design %}
+
+
+{% endblock design %}
+
+{% block content %}
+
+
+{% if count %}
+
+<h1 style="color:Tomato;text-align: center;" > Có sẵn các phòng số ..  {{ count }} </h1>
+
+<div class="wrapper" style="
+    padding-top: 40px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+">
+
+        <div class="table">
+
+            <div class="row header">
+                <div class="cell">
+                    Phòng số
+                </div>
+                <div class="cell">
+                    Giá
+                </div>
+                <div class="cell">
+                    Số người tối đa
+                </div>
+
+            </div>
+            {% for room in rooms %}
+                <div class="row">
+                    <div class="cell" data-title="Number">
+                        {{room.no}}
+                    </div>
+                    <div class="cell" data-title="Name">
+                        {{room.price}}
+                    </div>
+                    <div class="cell" data-title="Name">
+                        {{room.max_persons}}
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+<div class="center" style = "text-align: center;" >
+<a class="btn btn-primary" href="{% url 'guest:select' res.booking_id %}"> Chọn 1 phòng </a>
+</div>
+
+{% else %}
+<h1>Không có sẵn phòng</h1>
+{% endif %}
+
+
+
+{% endblock content %}
+
+
+
+
+{% block more_links %}
+    
+    <a href="{% url 'guest:cancel' res.booking_id %}">Cancel Booking</a>
+   <a href="{% url 'guest:logout' %}">Logout</a>
+
+{% endblock more_links %}
+
+
+

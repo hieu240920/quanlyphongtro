@@ -1,0 +1,104 @@
+{% extends 'guest/base.html' %}
+
+{% block content %}
+
+    <div class="wrapper">
+        <div class="table">
+
+            <div class="row">
+                <div class="cell">
+                    Họ
+                </div>
+                <div class="cell">
+                    {{ res.guest.first_name }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    Tên
+                </div>
+                <div class="cell">
+                    {{ res.guest.last_name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    SĐT
+                </div>
+                <div class="cell">
+                    {{ res.guest.phone }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    E-Mail
+                </div>
+                <div class="cell">
+                    {{ res.guest.email }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    Thành phố
+                </div>
+                <div class="cell">
+                    {{ res.guest.city }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    Phòng
+                </div>
+                <div class="cell">
+                     {{ res.room.no }} Trong nhà khách
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    Price (&#x20b9;)
+                </div>
+                <div class="cell">
+                     {{res.room.price}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    Từ ngày
+                </div>
+                <div class="cell">
+                     {{ res.checkIn }}
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="cell">
+                    Đến ngày
+                </div>
+                <div class="cell">
+                     {{ res.checkOut }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div style=" margin: 0 auto;
+            padding: 40px;
+            max-width: 800px;text-align:center;">
+            <a class="btn btn-success" href="{% url 'guest:confirm' res.booking_id %}"> Xác nhận đặt </a>
+
+            <a class="btn btn-danger" href="{% url 'guest:cancel' res.booking_id %}"> Hủy đặt phòng </a>
+
+            <!--<a class="btn btn-success" href="{% url 'guest:pdf' res.booking_id %}"> Tạo PDF </a>-->
+    </div>
+
+
+{% endblock content %}
+
+
+{% block more_links %}
+   <a href="{% url 'guest:logout' %}">Thoát</a>
+{% endblock more_links %}

@@ -1,0 +1,21 @@
+{% extends 'guest/base.html' %}
+
+
+{% block content %}
+
+<div class="wrap">
+    <a class="button-custom" href="{% url 'guest:register' %}">
+        Đăng ký
+    </a>
+    <a class="button-custom" href="{% url 'guest:login' %}">
+        Đăng nhập (Khách)
+    </a>
+
+  </div>
+
+{% endblock content %}
+
+
+{% block more_links %}
+   
+{% endblock more_links %}

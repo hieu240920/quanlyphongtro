@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="wrap" style="background-color: green;">
+
+    <form  method="post" >
+        {% csrf_token %}
+      <div class="fields"> Tài khoản <br><br> {{ form.username }}</div>
+
+
+      <div class="fields"> Mật khẩu <br><br>
+           <div class = 'error1' >
+             {% if error1 %}
+        <p style="color: red;">
+            Vui lòng nhập mật khẩu ít nhất 8 ký tự trở lên.
+        </p>
+        {% endif %}
+        </div>
+          {{ form.password1 }}
+      </div>
+
+
+
+      <div class="fields"> Nhập lại mật khẩu <br><br>
+          <div class="error2">
+            {% if error2 %}
+        <p style="color: red;">
+            Nhập lại mật khẩu
+        </p>
+        {% endif %}
+              </div>
+          {{ form.password2 }} </div>
+
+      <input class="button-custom" type="submit" value="Đăng ký">
+    </form>
+  </div>
+{% endblock content %}

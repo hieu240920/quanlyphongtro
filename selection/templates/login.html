@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="wrap">
+	
+    <form action="" method="post">
+        {% csrf_token %}
+      <div class="fields"> Tài khoản <br><br> {{ form.username }}</div>
+      <div class="fields"> Mật khẩu <br><br> {{ form.password }}</div>
+      <input class="button-custom" type="submit" value="LOGIN">
+    </form>
+  </div>
+{% endblock content %}
+
+
+{% block more_links %}
+    <a href="{% url 'login' %}">Đăng nhập</a>
+    <a href="{% url 'reg_form' %}">Đăng kí</a>
+{% endblock more_links %}

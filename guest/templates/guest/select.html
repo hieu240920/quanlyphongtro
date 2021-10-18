@@ -1,0 +1,19 @@
+{% extends 'guest/base.html' %}
+
+{% block content %}
+<div class="wrap">
+    <form action="" method="post">
+        {% csrf_token %}
+      <div class="fields">{{ form.as_p }}</div>
+      <input class="button-custom" type="submit" value="Chọn">
+    </form>
+  </div>
+
+{% endblock content %}
+
+
+{% block more_links %}
+    <a href="{% url 'guest:cancel' res.booking_id %}">Hủy đặt phòng</a>
+       <a href="{% url 'guest:logout' %}">Thoát</a>
+        
+{% endblock more_links %}

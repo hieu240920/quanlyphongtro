@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="wrapper">
+
+        <div class="table">
+
+            <div class="row header">
+                <div class="cell">
+                    Phòng trọ
+                </div>
+                <div class="cell">
+                    Phòng số
+                </div>
+                <div class="cell">
+                    Kiểu
+                </div>
+                <div class="cell">
+                    Trạng thái
+                </div>
+                <div class="cell">
+                    Tên học sinh
+                </div>
+                <div class="cell">
+                    Sô đăng kí
+                </div>
+                <div class="cell">
+                    Khóa học
+                </div>
+                <div class="cell">
+                    Giới tính
+                </div>
+                <div class="cell">
+                    Trợ cấp
+                </div>
+
+            </div>
+            {% for room in rooms %}
+                <div class="row">
+                    <div class="cell" data-title="Number">
+                        {{ room.hostel.name }}
+                    </div>
+                    <div class="cell" data-title="Name">
+                        {{ room.no }}
+                    </div>
+                    <div class="cell" data-title="Type">
+                        {{ room.room_type }}
+                    </div>
+                    <div class="cell" style="{% if room.vacant %} color: green {% else %} color :blue {% endif %}" data-title="Status">
+                        {% if room.vacant %} vacant {% else %} occupied {% endif %}
+                    </div>
+                    <div class="cell">
+                        {% if room.vacant %}
+                            -
+                        {% else %}
+                            {{ room.student.student_name }}
+                        {% endif %}
+                    </div>
+                     <div class="cell">
+                        {% if room.vacant %}
+                            -
+                        {% else %}
+                            {{ room.student.enrollment_no }}
+                        {% endif %}
+                    </div>
+                    <div class="cell">
+                        {% if room.vacant %}
+                            -
+                        {% else %}
+                            {{ room.student.course.code }}
+                        {% endif %}
+                    </div>
+                    <div class="cell">
+                        {% if room.vacant %}
+                            -
+                        {% else %}
+                            {{ room.student.gender }}
+                        {% endif %}
+                    </div>
+                    <div class="cell">
+                        {% if room.repair %}
+                             {{ room.repair }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
+
+
+{% block more_links %}
+    <a href="{% url 'leave_admin' %}">
+        Để lại yêu cầu
+    </a>
+    <a href="{% url 'empty_rooms' %}">
+        Phòng trống
+    </a>
+    <a href="{% url 'present_leaves' %}">
+        Hiện tại nghỉ
+    </a>
+    <a href="{% url 'guest_requests' %}">
+        Yêu cầu phòng khách
+    </a>
+    <a href="{% url 'warden_dues' %}">
+        Kì hạn
+    </a>
+    <a href="{% url 'warden_add_due' %}">
+        Thêm thời hạn
+    </a>
+    <a href="{% url 'warden_remove_due' %}">
+        Xóa thời hạn
+    </a>
+    <a href="{% url 'logout' %}">
+        Thoát
+    </a>
+{% endblock more_links %}
+
